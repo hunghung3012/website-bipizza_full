@@ -1,0 +1,93 @@
+.cancel_question {
+    width: 400px;
+    height: 200px;
+    z-index: 999;
+    position: fixed;
+    top: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    border-radius: 20px;
+    /* border: 1px solid rgba(128, 128, 128, 0.566); */
+    background-color: rgb(237, 236, 236);
+    padding:50px 40px 40px;
+    overflow: hidden;
+   
+    display: none;
+}
+.cancel_question .cancel_noneDetail {
+ margin-top: 20px;
+}
+.cancel_question .remove{
+    position: absolute;
+    right: -2px;
+    top: -5px;
+    background-color: rgba(255, 0, 0, 0.762);
+
+}
+.cancel_text {
+    width: 700px;
+    height:190px;
+    z-index: 9999;
+    position: fixed;
+    top: 20%;
+    overflow: auto;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    border-radius: 20px;
+    border: 1px solid rgba(128, 128, 128, 0.566);
+    background-color: rgba(237, 236, 236, 0.86);
+    display: none;
+    padding:30px;
+}
+.cancel_text .back {
+    position: absolute;
+    right: -2px;
+    top: -5px;
+    background-color: rgba(255, 0, 0, 0.762);
+    
+}
+
+.cancel_text .submit ,.cancel_text textarea {
+    margin-top: 20px;
+}
+.notice {
+    width: 250px;
+    height: 67px;
+    border-radius: 30px;
+    position: fixed;
+    left: 80px;
+    bottom: 400px;
+    z-index:999999999999999;;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+
+    opacity: 0;
+}
+.notice.active{
+    animation: test2 1s ease;
+}
+
+
+@keyframes test2 {
+    0%  {
+        opacity: 0;
+        transform: translateX(-100%);
+ 
+    }
+    30%  {
+        opacity: 1;
+        transform: translateX(0);
+    }
+    100%  {
+        opacity: 0;
+    
+    }
+}

@@ -1,0 +1,51 @@
+body {
+    padding: 10px;
+}
+.order_index {
+    height: 30px;
+    background-color: rgb(255, 169, 119);
+    font-size: 13px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.order-item {
+
+    border: 1px solid rgb(201, 198, 198);
+    border-radius: 10px;
+    margin-bottom: 10px;
+    overflow: hidden;
+}
+.order-item-detail {
+    padding: 10px;
+}
+p {
+font-size: 12px
+}
+.table-detail th,.table-detail td {
+font-size: 10px !important;
+}
+.title-alert {
+font-weight: bold;
+}
+.btn-submit {
+
+border: none !important;
+
+font-size: 11px;
+
+
+}
+img {
+    width: 30px;
+    height: 30px;
+    object-fit: cover;
+}
+.head {
+    display: flex;
+
+}
+.head p {
+    min-width: 120px;
+}
