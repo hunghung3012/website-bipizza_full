@@ -36,35 +36,6 @@ Route::get('/blog', function () {
 Route::get('/login', function () {
     return view('login');
 })->name('login');
-// Route::get('/detail_product/{id}', function () {
-//     return view('detail_product',[$id]);
-// })->name('detail_product');;
-Route::get('/detail_product/{id}', [ProductController::class, "detailProduct"])->name('detail_product');
-
-Route::get('/renderMenu', [ProductController::class, "renderMenu"])->name('renderMenu');
-Route::get('/renderHome', [ProductController::class, "renderHome"])->name('renderHome');
-Route::post('/addCart', [ProductController::class, "addCart"])->name('addCart')->middleware('checkLoginUser');
-
-Route::get('/renderCart', [ProductController::class, "renderCart"])->name('renderCart')->middleware('checkLoginUser');
-
-// Xóa sản phẩm
-Route::get('/deleteProduct/{id}', [ProductController::class, "deleteProduct"])->name('deleteProduct')->middleware('checkLoginUser');
-// Xóa cart
-Route::get('/destroyCart', function () {
-    Cart::destroy();
-});
-Route::get('/test', [ProductController::class, "test"])->name('test');
-Route::get('/renderOrder/{condition?}', [OrderController::class, "renderOrder"])->name('renderOrder')->middleware('checkLoginUser');
-Route::get('/renderOrder/cancelOrder/{condition?}', [OrderController::class, "cancelOrder"])->name('cancelOrder')->middleware('checkLoginUser');
-// Xử lý thanh toán(thêm sản phẩm vào hóa đơn)
-Route::post('/processOder', [OrderController::class, "processOder"])->name('processOder');
-
-// Theem Binh luan
-Route::post('/detail_product/addComment', [CommentController::class, "addComment"])->name('addComment')->middleware('checkLoginUser');
-// admin
-Route::get('/admin', function () {
-    return view('admin.layouts.layout2');
-});
 Route::prefix('/adminui')->name('adminui.')->group(
     function () {
         Route::get('/product/list', function () {
@@ -76,6 +47,33 @@ Route::prefix('/adminui')->name('adminui.')->group(
         // listProductAdmin
     }
 );
+// Xóa cart
+Route::get('/destroyCart', function () {
+    Cart::destroy();
+});
+
+
+Route::get('/detail_product/{id}', [ProductController::class, "detailProduct"])->name('detail_product');
+Route::get('/renderMenu', [ProductController::class, "renderMenu"])->name('renderMenu');
+Route::get('/renderHome', [ProductController::class, "renderHome"])->name('renderHome');
+Route::post('/addCart', [ProductController::class, "addCart"])->name('addCart')->middleware('checkLoginUser');
+Route::get('/renderCart', [ProductController::class, "renderCart"])->name('renderCart')->middleware('checkLoginUser');
+// Xóa sản phẩm
+Route::get('/deleteProduct/{id}', [ProductController::class, "deleteProduct"])->name('deleteProduct')->middleware('checkLoginUser');
+
+
+Route::get('/renderOrder/{condition?}', [OrderController::class, "renderOrder"])->name('renderOrder')->middleware('checkLoginUser');
+Route::get('/renderOrder/cancelOrder/{condition?}', [OrderController::class, "cancelOrder"])->name('cancelOrder')->middleware('checkLoginUser');
+// Xử lý thanh toán(thêm sản phẩm vào hóa đơn)
+Route::post('/processOder', [OrderController::class, "processOder"])->name('processOder');
+
+// Theem Binh luan
+Route::post('/detail_product/addComment', [CommentController::class, "addComment"])->name('addComment')->middleware('checkLoginUser');
+// admin
+Route::get('/admin', function () {
+    return view('admin.layouts.layout2');
+});
+
 // ->middleware('checkLoginUser')
 Route::prefix('/admin')->name('admin.')->middleware('checkLoginAdmin')->group(
     function () {
@@ -128,7 +126,7 @@ Route::prefix('/admin')->name('admin.')->middleware('checkLoginAdmin')->group(
     }
 );
 // Login
-// Route::get('/addUser',[LoginController::class,"addUser"])->name('addUser');
+
 Route::get('/logout', [LoginController::class, "logout"])->name('logout');
 Route::get('/login', [LoginController::class, "pageLogin"])->name('pageLogin');
 Route::post('/checkUserLogin', [LoginController::class, "checkUserLogin"])->name('checkUserLogin');
@@ -142,7 +140,6 @@ Route::get('/admin/logout', [LoginController::class, "logoutAdmin"])->name('logo
 // Delivery
 Route::get('/delivery/list', [OrderController::class, "pageListDeli"])->name('pageListDeli');
 Route::post('/delivery/list', [OrderController::class, "deliUpdateStatus"])->name('deliUpdateStatus');
-
 Route::get('/getSubTotal', [OrderController::class, "getSubTotal"])->name('pageListDeli');
 
 // ChageQuality
@@ -153,3 +150,8 @@ Route::post('/renderCart/checkCoupon',[OrderController::class,"ajaxcheckCoupon"]
 // Chat Ai
 Route::get('/gpt',[ChatAIController::class,"index"]);
 Route::post('/gpt',[ChatAIController::class,"processQuesion"]);
+
+// forget pass
+Route::post('/forget_pass',[LoginController::class,"forget_pass"])->name('forget_pass');
+Route::get('/regain_pass',[LoginController::class,"regain_pass"])->name('regain_pass');
+Route::post('/setNewPass',[LoginController::class,"setNewPass"])->name('setNewPass');

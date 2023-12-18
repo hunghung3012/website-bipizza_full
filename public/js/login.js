@@ -1,26 +1,25 @@
-const signUpButton = document.getElementById('signUp');
-const signInButton = document.getElementById('signIn');
-const container = document.getElementById('container');
-const signUpButton_main = document.querySelector('.sign-up-container button');
-const signInButton_main = document.querySelector('.sign-in-container button');
-const signIn_email = document.querySelector('.sign-in-container .email_input');
-const signIn_pass = document.querySelector('.sign-in-container .password_input');
-const nameInputsu = document.querySelector('.name_input_signup');
-const emailInputsu = document.querySelector('.email_input_signup');
-const passInputsu = document.querySelector('.pass_input_signup');
-const error1 = document.querySelector('.error1');
-const error2 = document.querySelector('.error2');
+$(document).ready(function() {
+    const signUpButton = $('#signUp');
+    const signInButton = $('#signIn');
+    const container = $('#container');
+	const forgetPass_Buton = $('.forget-pass_button')
+	const forget_pass_form = $('.forget_pass_form')
+	const overlay = $('.overlay1')
+    signUpButton.on('click', function() {
+        container.addClass("right-panel-active");
+    });
+    signInButton.on('click', function() {
+        container.removeClass("right-panel-active");
+    });
+	forgetPass_Buton.click(function() {
+		overlay.show()
+		forget_pass_form.show()
 
-signUpButton.addEventListener('click', () => {
-	container.classList.add("right-panel-active");
+	})
+	overlay.click(function() {
+		forget_pass_form.hide()
+		overlay.hide()
+
+	})
+	
 });
-
-signInButton.addEventListener('click', () => {
-	container.classList.remove("right-panel-active");
-});
-
-
-
-
-
-

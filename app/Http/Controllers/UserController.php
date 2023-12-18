@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\UserModel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class UserController extends Controller
 {
@@ -74,7 +76,7 @@ class UserController extends Controller
             return redirect()->route('admin.user.list')->with(['msg' => "không tìm thấy Người Dùng :(", 'type' => 'danger']);
         }
     }
-    
+   
 
 
 }

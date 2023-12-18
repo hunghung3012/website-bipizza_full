@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\UserModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Redis;
 
 class LoginController extends Controller
@@ -72,7 +73,7 @@ class LoginController extends Controller
 
         ];
         $this->users->addUserAdmin($data);
-        return redirect()->route("login")->with(["user"=>$request->email_su,"password" =>$request->password_su ]);
+        return redirect()->route("pageLogin")->with(["user"=>$request->email_su,"password" =>$request->password_su ]);
     }
    
     // admin
@@ -102,4 +103,35 @@ class LoginController extends Controller
         return redirect()->route("loginAdmin");
         
     }
+
+    public function forget_pass(Request $request) {
+        $request->validate(
+            [
+                'emailFindPass' => 'required|exists:users,user'
+            ],
+            [
+                'emailFindPass.exists' =>"Không tồn tại email này"
+            ]
+        );
+        $random_int = random_int(10001, 99999);
+        session()->put('key_email',$random_int);
+        $email =  $request->emailFindPass;
+        Mail::send("mail.forget_pass", compact('random_int','email'), function ($email) {
+            $email->subject("Đặt Lại Mật Khẩu");
+            $email->to("vonhathung3012@gmail.com", "Bizza");
+        });
+    }
+    public function regain_pass(Request $request) {
+        $email = $request->email;
+        $check = ($request->key ==session()->get('key_email'))?true:false;
+            return view('public.regain_pass',compact('check','email'));
+        
+    }
+    public function setNewPass(Request $request) {
+       $user = $this->users->getUserConditionEmail($request->email);
+       $user->password = bcrypt($request->newpass);
+     $this->users->updateUserAdmin((array)$user);
+     return redirect()->route("pageLogin")->with(["email"=>$request->email]);
+    }
+    
 }

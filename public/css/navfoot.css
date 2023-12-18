@@ -925,3 +925,16 @@ display: flex;
     align-items: center;
     margin: 10px;
 }
+.login_button {
+    font-family: 'Inter', sans-serif;
+    font-weight: bold;
+    font-size: 16px;
+    padding: 10px 30px ;
+    background-color: rgba(41, 40, 40, 0.3);
+    border-radius: 20px;
+    color: rgb(190, 189, 189);
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    margin-right: 10px;
+
+
+}

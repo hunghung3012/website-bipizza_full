@@ -35,5 +35,9 @@ class UserModel extends Model
         ->where('id',$data['id'])
         ->update($data);
     }
-
+    public function getUserConditionEmail($email) {
+        return DB::table($this->table)
+        ->where('user',$email)
+        ->first();
+    }
 }

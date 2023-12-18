@@ -7,6 +7,7 @@
     <title>Login</title>
     <link rel="stylesheet" href="css/login.css">
     <script src="js/login.js" defer></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 
 <body>
@@ -14,7 +15,7 @@
         <div class="form-container sign-up-container">
             <form action="{{ route('addUser') }}" method="POST">
                 @csrf
-                <div class="form">
+                <div class="form ">
                     <h1>Tạo Tài Khoản</h1>
                     <input class="name_input_signup" name="name_su" type="text" placeholder="Họ Và Tên">
                     <input class="email_input_signup" name="email_su" type="text" placeholder="Email">
@@ -30,21 +31,25 @@
                 @csrf
                 <h1>Đăng Nhập</h1>
                 <input name="email" class="email_input" type="text" placeholder="Email"
-                    value="{{ old('email') ?? session('user') }}">
+                    value="{{ old('email') ?? session('user') ?? session('email')  }}">
                 @error('email')
-                    <p>{{ $message }}</p>
+                    <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
                 <input name="password" class="password_input" type="password" placeholder="Password"
                     value="{{ session('password') }}">
                 @error('password')
-                    <p>{{ $message }}</p>
+                <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
-                <a href="#">Quên Mật Khẩu?</a>
+                <a class="forget-pass_button">Quên Mật Khẩu?</a>
+                @error('emailFindPass')
+                <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
                 @if (session('msg'))
-                    <p class="a">{{ session('msg') }}</p>
+                <div class="alert alert-danger">{{ session('msg') }}</div>
                 @endif
                 <button type="submit" class="sign-in">Đăng Nhập</button>
             </form>
+           
         </div>
         <div class="overlay-container">
             <div class="overlay">
@@ -62,7 +67,15 @@
         </div>
     </div>
 
-
+<div class="forget_pass_form">
+    <form action="{{route('forget_pass')}}" method="POST">
+        @csrf
+       
+        <input class="forget_pass_input" name="emailFindPass" type="text" placeholder="Nhập email của bạn để kích hoạt">
+        <input class="forget_pass_submit" type="submit" value="Xác Nhận">
+    </form>
+</div>
+<div class="overlay1"></div>
 </body>
 
 </html>

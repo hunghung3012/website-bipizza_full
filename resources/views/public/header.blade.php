@@ -35,12 +35,13 @@
       <li class="menu_item"><a href="{{ route('aboutus') }}">About us</a></li>
     </ul>
     <div class="infor_account logo_cart">
+      @if(Auth::check()) 
       <div class="quantity__cart">
         <i class="fa-solid fa-cart-shopping"></i>
         <p class="quantity__cart-infor">{{count( $products)}}</p>
       </div>
       
-      @if(Auth::check()) 
+     
       <div class="account">
         <div class="option_account">
           <a href="{{route('renderOrder')}}" >
@@ -50,11 +51,10 @@
         </div>
       </div>
       @else
-      <div class="account">
-        <div class="option_account">
-        <a href="{{route('pageLogin')}}">Đăng Nhập</a>
+      
+      <a class="login_button" href="{{route('pageLogin')}}">Đăng Nhập</a>
         
-        </div>
+      
       </div>
           
       @endif

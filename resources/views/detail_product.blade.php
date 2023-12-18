@@ -5,10 +5,12 @@
 <link rel="stylesheet" href="/css/grid.css">
 <link rel="stylesheet" href="/css/detail_product.css">
 <link rel="stylesheet" href="/css/menu.css">
+<script src='https://code.jquery.com/jquery-3.6.0.min.js'></script>
 @endsection
 @section('js')
 <script src="https://kit.fontawesome.com/7a3de78148.js" crossorigin="anonymous"></script>
 <script src="/js/navfoot.js" defer></script>
+<script src="/js/comment.js" defer></script>
 @endsection   
 
 <div class="overlay"></div>
@@ -95,12 +97,14 @@
 
 </div>
 <p class="text_choose">Bình Luận</p>
-<form action="{{route('addComment')}}" method="POST">
-  @csrf
+
+ 
 <div class="comment_container">
   <input type="hidden" name="id" value="{{$data->id}}">
+  <div class="comment_item_container">
   @foreach($comments as $comment) 
   @if( $comment->idsanpham == $data->id)
+ 
   <div class="comment_item">
     <div class="avatar_name">
       <div><img src="/images/dog.avif" alt=""></div>
@@ -109,18 +113,19 @@
     <div class="comment_content">
       {{$comment->noidung}}
     </div>
-    
   </div>
+ 
   @endif
   @endforeach
+</div>
   <p>Bình Luận Của Bạn</p>
   <div class="comment">
-    <textarea name="comment_content" id="" cols="30" rows="5"></textarea>
+    <textarea name="comment_content" class="comment_content_ta"  cols="30" rows="5"></textarea>
   </div>
-  <button class="comment_submit" type="submit">Xác Nhận</button>
+  <button class="comment_submit">Xác Nhận</button>
 
 </div>
-</form>
+
 @endsection 
  
 

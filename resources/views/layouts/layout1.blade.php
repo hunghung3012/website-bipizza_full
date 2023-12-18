@@ -62,4 +62,6 @@
         </div>
 
     </div>
+
+ 
     @include('public.footer')

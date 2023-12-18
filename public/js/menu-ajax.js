@@ -9,6 +9,10 @@ $(document).ready(function(){
       $(".find_input_submit") .click(function(){
         filter();
       });
+      $('.find_input').keydown(function(event){
+        if(event.which == 13)
+            filter();
+      });
     function filter() {
         var selectedValues = $(".category:checked").map(function(){
             return $(this).val();
@@ -17,8 +21,6 @@ $(document).ready(function(){
           var price_from = $(".price_from").val();
           var price_to = $(".price_to").val();
           var price = {"from":price_from,"to":price_to};
-          var price_from = $(".price_from").val();
-          var price_to = $(".price_to").val();
     
           // Check if price_to is not empty
           if (price_to !== "") {
