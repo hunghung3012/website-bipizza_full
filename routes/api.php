@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
@@ -35,3 +36,6 @@ Route::post('/menu',[ProductController::class,"ajaxMenuFilter"])->name('ajax-ord
 Route::post('/cart/getSubTotal',[OrderController::class,"getSubTotal"])->name('ajax-checkCoupan');
 // dash board
 Route::get('/dashboard',[DashboardController::class,"data_chart_dashboard"])->name('ajax-dashboard');
+
+
+Route::post('/detail_product/addReponseComment', [CommentController::class, "addReponseComment"])->name('addReponseComment');

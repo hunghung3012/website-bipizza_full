@@ -115,4 +115,5 @@
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="https://cdn.ckeditor.com/ckeditor5/42.0.0/classic/ckeditor.js"></script>
   <script src="/admin-2/js/order_approve.js"></script>
+  <script src="/admin-2/js/find.js"></script>
 

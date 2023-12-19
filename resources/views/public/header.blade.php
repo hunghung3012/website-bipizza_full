@@ -16,7 +16,7 @@
       
       </div>
     </div>
-    <a href="{{ route('home') }}" class="header_logo">
+    <a href="{{ route('renderHome') }}" class="header_logo">
       <i class="fa-solid fa-pizza-slice icon_logo"></i>
       <span>PIZZA</span>
     </a>

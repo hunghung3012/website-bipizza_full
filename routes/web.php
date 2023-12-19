@@ -69,6 +69,8 @@ Route::post('/processOder', [OrderController::class, "processOder"])->name('proc
 
 // Theem Binh luan
 Route::post('/detail_product/addComment', [CommentController::class, "addComment"])->name('addComment')->middleware('checkLoginUser');
+Route::post('/detail_product/addReponseComment', [CommentController::class, "addReponseComment"])->name('addReponseComment')->middleware('checkLoginUser');
+Route::post('/detail_product/showReponseComment', [CommentController::class, "showReponseComment"])->name('showReponseComment');
 // admin
 Route::get('/admin', function () {
     return view('admin.layouts.layout2');

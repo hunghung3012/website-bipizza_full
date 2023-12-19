@@ -18,11 +18,32 @@
                 <div class="form ">
                     <h1>Tạo Tài Khoản</h1>
                     <input class="name_input_signup" name="name_su" type="text" placeholder="Họ Và Tên">
-                    <input class="email_input_signup" name="email_su" type="text" placeholder="Email">
-                    <input class="pass_input_signup" name="password_su" type="password" placeholder="Password">
-                    <input class="address_input_signup" name="address_su" type="text" placeholder="Địa Chỉ">
-                    <input class="phone_input_signup" name="phone_su" type="text" placeholder="Số Điện Thoại">
-                    <button type="submit" class="sign-up">Đăng Ký</button>
+    
+    <!-- Hiển thị thông báo lỗi cho trường 'email_su' -->
+    @error('email_su')
+        <div class="alert alert-danger">{{ $message }}</div>
+    @enderror
+    <input class="email_input_signup" name="email_su" type="text" placeholder="Email">
+
+    <!-- Hiển thị thông báo lỗi cho trường 'password_su' -->
+    @error('password_su')
+        <div class="alert alert-danger">{{ $message }}</div>
+    @enderror
+    <input class="pass_input_signup" name="password_su" type="password" placeholder="Password">
+
+    <!-- Hiển thị thông báo lỗi cho trường 'address_su' -->
+    @error('address_su')
+        <div class="alert alert-danger">{{ $message }}</div>
+    @enderror
+    <input class="address_input_signup" name="address_su" type="text" placeholder="Địa Chỉ">
+
+    <!-- Hiển thị thông báo lỗi cho trường 'phone_su' -->
+    @error('phone_su')
+        <div class="alert alert-danger">{{ $message }}</div>
+    @enderror
+    <input class="phone_input_signup" name="phone_su" type="text" placeholder="Số Điện Thoại">
+
+    <button type="submit" class="sign-up">Đăng Ký</button>
                 </div>
             </form>
         </div>

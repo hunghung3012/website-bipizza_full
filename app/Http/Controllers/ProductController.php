@@ -72,7 +72,10 @@ class ProductController extends Controller
     $user = new UserModel();
     foreach($comments as $comment) {
       $comment->nameOfUser = $user->getUserCondition($comment->idkhachhang)->name;
+      $comment->reponseComment = $this->comment->getReponseCommentAdmin($comment->id);
+    
     }
+
     return view('detail_product', compact('data', 'suggests', 'max','comments'));
   }
   public function addCart(Request $request)

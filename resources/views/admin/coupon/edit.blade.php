@@ -45,7 +45,7 @@
               </tr>
               <tr>
                 <td>Số Lượt</td>
-                <td><input class="form-control" name="turn" type="text" value="{{old('turn') ?? $coupon->soluot}}">
+                <td><input class="form-control" name="turn" type="number" value="{{old('turn') ?? $coupon->soluot}}">
                     @error('turn')
                     <div class="alert alert-danger">{{$message}}</div>
                     @enderror</td>

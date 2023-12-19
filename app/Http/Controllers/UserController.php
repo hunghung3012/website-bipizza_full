@@ -33,7 +33,7 @@ class UserController extends Controller
     public function addUserAdmin(Request $request)
     {
       
-        return redirect()->route("admin.user.list")->with(['msg' => "thêm sản phẩm thành công", 'type' => 'success']);
+        return redirect()->route("admin.user.list")->with(['msg' => "thêm Khách Hàng thành công", 'type' => 'success']);
     }
     public function editUserAdmin(Request $request)
     {

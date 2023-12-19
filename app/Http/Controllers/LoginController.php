@@ -47,13 +47,14 @@ class LoginController extends Controller
     public function addUser(Request $request ) {
         $request->validate(
             [
-                "email_su" => "required",
+                "email_su" => "required|unique:users,user",
                 "password_su"=>"required",
                 "name_su" => "required",
                 "address_su" => "required",
                 "phone_su"=>"required",
             ],
             [
+                "email_su.unique" => "Đã tồn tại Email",
                 "email_su.required" => "Không Được Nhập Thiếu Email",
                 "password_su.required" => "Không Được Nhập Thiếu PassWord",
                 "name_su.required" => "Không Được Nhập Thiếu Tên",

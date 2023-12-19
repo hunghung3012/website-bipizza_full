@@ -21,9 +21,33 @@ class CommentController extends Controller
             'noidung' =>$request->content,
             'idkhachhang' =>Auth::id()
         ];
-        $this->model->addCommentAdmin($data);
+        $id  = $this->model->addCommentAdmin($data);
+        $user = new UserModel();
+        $name = $user->getUserCondition(Auth::id())->name;
+        
+       return  ["name"=>$name,"id"=>$id];
+    }
+    public function addReponseComment(Request $request) {
+        $data = [
+            'idbinhluan' =>$request->id,
+            'noidung' =>$request->content_response,
+            'idkhachhang' =>Auth::id()
+        ];
+        $this->model->addReponseCommentAdmin($data);
         $user = new UserModel();
         $name = $user->getUserCondition(Auth::id())->name;
        return  $name;
+
     }
+    public function showReponseComment(Request $request) {
+        
+       $reponse_comment = $this->model->getReponseCommentAdmin($request->id);
+        $user = new UserModel();
+        foreach( $reponse_comment as $value) {
+      $value->nameOfUser = $user->getUserCondition($value->idkhachhang)->name;
+   }
+       return  $reponse_comment;
+
+    }
+   
 }

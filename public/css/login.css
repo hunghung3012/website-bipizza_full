@@ -92,6 +92,7 @@ button.ghost {
 	padding:55px 50px;
 	height: 100%;
 	text-align: center;
+	overflow: auto;
 }
 
 input {

@@ -1,6 +1,7 @@
 @extends('layouts.layout1') 
 @section('title', "Cart")  
 @section('css')
+<meta name="csrf-token" content="{{ csrf_token() }}">
 <link rel="stylesheet" href="/css/navfoot.css">
 <link rel="stylesheet" href="/css/grid.css">
 <link rel="stylesheet" href="/css/detail_product.css">
@@ -104,7 +105,7 @@
   <div class="comment_item_container">
   @foreach($comments as $comment) 
   @if( $comment->idsanpham == $data->id)
- 
+ <div class="comment_container_item comment_container">
   <div class="comment_item">
     <div class="avatar_name">
       <div><img src="/images/dog.avif" alt=""></div>
@@ -113,8 +114,36 @@
     <div class="comment_content">
       {{$comment->noidung}}
     </div>
+    <div class="view_more">
+      @csrf
+      <input type="hidden" name="value_comment" value="{{ $comment->id}}">
+      <button class="view_more_button"><i class="fa-solid fa-caret-down"></i> Xem Phản Hồi</button>
+    </div>
+
   </div>
- 
+</div>
+  {{-- <div class="detail_comment_container">
+<div class="detail_comment_show">
+  <div class="detail_comment">
+     <div class="avatar_name">
+      <div><img src="/images/dog.avif" alt=""></div>
+      <div><span class="text fw-bold">{{$comment->nameOfUser}}</span></div>
+    </div>
+    <div class="comment_content">
+      {{$comment->noidung}}
+    </div>
+  </div>
+  
+  
+  </div>
+<div class="reponse_comment">
+  @csrf
+  <input class="input_id_comment" type="hidden" value="{{$comment->id}}">
+  <input type="text" class=" reponse_comment_input">
+  <button type="submit" class=" reponse_comment_button">Gửi</button>
+</div>
+</div>
+  --}}
   @endif
   @endforeach
 </div>
@@ -122,8 +151,11 @@
   <div class="comment">
     <textarea name="comment_content" class="comment_content_ta"  cols="30" rows="5"></textarea>
   </div>
+  @if(Auth::check())
   <button class="comment_submit">Xác Nhận</button>
-
+@else
+  <a href="{{route('pageLogin')}}" ><button class="comment_submit1">Xác Nhận</button></a>
+  @endif
 </div>
 
 @endsection 

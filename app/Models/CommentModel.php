@@ -36,5 +36,12 @@ class CommentModel extends Model
         ->orderBy($oderby,$condition)
         ->get();
     }
-
+    function addReponseCommentAdmin($data) {
+        return DB::table('chi_tiet_binh_luan')->insertGetId($data);
+    }
+    function getReponseCommentAdmin($id) {
+        return DB::table('chi_tiet_binh_luan')
+        ->where('idbinhluan',$id)
+        ->get();
+    }
 }
