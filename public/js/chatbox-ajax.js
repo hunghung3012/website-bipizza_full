@@ -85,4 +85,73 @@ if(question_input.val()!="") {
     }
 }
     
+
+// speeach to voice
+
+
+
+var click_to_convert = $('#click_to_convert');
+var convert_text_container  = $('.convert_text_container')
+var convert_text = $('#convert_text');
+var speech = true;
+var convert_temp = false;
+var right_convert = $('.convert_text_button .fa-circle-check')
+var wrong_convert = $('.convert_text_button .fa-xmark')
+var hide_convert = $('.convert_text_container .fa-minus')
+window.SpeechRecognition = window.webkitSpeechRecognition;
+const recognition = new SpeechRecognition();
+recognition.interimResults = true;
+
+recognition.addEventListener('result', e => {
+    const transcript = Array.from(e.results)
+        .map(result => result[0])
+        .map(result => result.transcript)
+        .join('');
+
+    convert_text.html(transcript);
+
+    if (speech == true) {
+        recognition.start();
+    }
+});
+
+
+
+convert_text_container.hide()
+click_to_convert.click(function() {
+    if(!convert_temp) {
+        convert_text_container.show();
+        convert_temp = true;
+        if (speech == true) {
+            recognition.start();
+        }
+    }
+    else {
+        convert_text_container.hide()
+        convert_temp = false;
+    }
+   
+   
+}) 
+right_convert.click(function() {
+    console.log("1");
+    question_input.val(convert_text.val())
+    convert_text.val('')
+    convert_text_container.hide()
+    question_input.focus()
+
+})
+wrong_convert.click(function() {
+    convert_text.val('')
+})
+hide_convert.click(function() {
+    convert_text_container.hide()
+})
+
+// click_to_convert.on('click', function() {
+//     if (speech == true) {
+//         recognition.start();
+//     }
+// });
+
 });

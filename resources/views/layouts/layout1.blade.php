@@ -40,7 +40,15 @@
 
                 </div>
             </div>
-            
+         
+            <div class="convert_text_container">
+              <i class="fa-solid fa-minus"></i>
+            <textarea  id="convert_text"></textarea>
+            <div class="convert_text_button">
+              <i class="fa-solid fa-circle-check"></i>
+              <i class="fa-solid fa-xmark"></i>
+            </div>
+          </div>
             {{-- Content --}}
 
         </div>
@@ -48,15 +56,17 @@
          
             <div class="text_chat_item">
            
-              <form >
+              <form >   
+               
                 @csrf
                 <input class="question_text" placeholder="Bạn đang thắc mắc điều gì?" type="text" >
-               
+            
               </form>
             </div>
          
             <div class="icon_send">
                 <i class="fa-regular fa-paper-plane"></i>
+              <i   id="click_to_convert"class="fa-solid fa-microphone"></i>
             </div>
        
         </div>
