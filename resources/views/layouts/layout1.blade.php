@@ -66,7 +66,7 @@
          
             <div class="icon_send">
                 <i class="fa-regular fa-paper-plane"></i>
-              <i   id="click_to_convert"class="fa-solid fa-microphone"></i>
+               <i id="click_to_convert"class="fa-solid fa-microphone"></i>
             </div>
        
         </div>

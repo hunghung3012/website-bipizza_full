@@ -49,3 +49,65 @@ img {
 .head p {
     min-width: 120px;
 }
+.find_address_button {
+    background-color: rgb(142, 231, 142);
+    color: green;
+    border-radius: 50%;
+    padding: 5px;
+}
+.x {
+    font-size: 12px;
+    color: grey;
+}
+.dot-container {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.dot {
+    display: inline-block;
+    width: 5px;
+    height: 5px;
+    background-color: #333;
+    border-radius: 50%;
+    margin: 0 4px;
+    animation: bounce 1s infinite alternate;
+}
+
+.dot:nth-child(2) {
+    animation-delay: 0.2s;
+}
+.dot:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+@keyframes bounce {
+    0% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(-20px);
+    }
+}
+.annouce-container {
+    position: fixed;
+    z-index: 4;
+    top: 300px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgb(255, 255, 255);
+    padding: 20px;
+    border-radius: 20px;
+
+}
+.overlay {
+
+    background-color: rgba(21, 21, 21, 0.195);
+    z-index: 1;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    display: none;
+}

@@ -159,7 +159,7 @@ class ChatAIController extends Controller
         Với src sẽ bằng link hình ảnh của sản phẩm đã nói ở trên, và luôn trả thẻ img này về cuối câu trả lời của mình khi trả lời cho khách hàng
         6) Khi trả về câu trả lời có xuống dòng, phải chuyển /n có chức năng xuống dòng đây thành thẻ <br> để xuống dòng, vì nó dịch sang html
         7) thông tin của cửa hàng là : số điện thoại cửa hàng : 0987678573, tên chủ cửa hàng: Hưng, Địa chỉ:
-         <a href='https://bom.so/iJufQK'><b>Trường Việt Hàn<b>(click vào để xem địa chỉ)</a>, 
+         <a href='https://bom.so/iJufQK'><b>Trường Việt Hàn<b></a>, Chú ý địa chỉ phải luôn để trong thẻ a với href là https://bom.so/iJufQK, thẻ theo định dạng html
         ";
 
         return    $traning_text;
