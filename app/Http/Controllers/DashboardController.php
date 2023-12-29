@@ -46,10 +46,8 @@ class DashboardController extends Controller
 
     }
     public function data_chart_dashboard() {
-        $today = now();
-        $revenueData = $this->order->dashboard( $today );
-       
-    return   $revenueData;
+        $revenueData = $this->order->dashboard();    
+        return   $revenueData;
   
     }
 }

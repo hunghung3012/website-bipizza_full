@@ -157,3 +157,5 @@ Route::post('/gpt',[ChatAIController::class,"processQuesion"]);
 Route::post('/forget_pass',[LoginController::class,"forget_pass"])->name('forget_pass');
 Route::get('/regain_pass',[LoginController::class,"regain_pass"])->name('regain_pass');
 Route::post('/setNewPass',[LoginController::class,"setNewPass"])->name('setNewPass');
+
+Route::get('/test_revenue',[DashboardController::class,"data_chart_dashboard"])->name('regain_pass');

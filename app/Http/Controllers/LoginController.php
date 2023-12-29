@@ -51,7 +51,7 @@ class LoginController extends Controller
                 "password_su"=>"required",
                 "name_su" => "required",
                 "address_su" => "required",
-                "phone_su"=>"required",
+                "phone_su"=>"required|digits:10",
             ],
             [
                 "email_su.unique" => "Đã tồn tại Email",

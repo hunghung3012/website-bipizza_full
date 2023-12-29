@@ -68,12 +68,13 @@ class OrderModel extends Model
         ->where('id',$data['id'])
         ->update($data);
     }
-    public function dashboard($today) {
-        $today = now()->toDateString();
-    return DB::table($this->table)
-        ->select(DB::raw('SUM(tongtien) as total_revenue'))
-        ->whereDate('ngaytao', $today)
-        ->where('trangthai',"Đã Giao")
-        ->first();
+    public function dashboard() {
+
+    return DB::select("
+    SELECT  DATE(ngaytao) AS day  , SUM(tongtien) AS total
+    FROM hoadon 
+    GROUP BY day DESC
+    ORDER BY day 
+    LIMIT 7");
     }
 }

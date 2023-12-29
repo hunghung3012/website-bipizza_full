@@ -43,14 +43,19 @@ $(document).ready(function() {
     url: "http://127.0.0.1:8000/api/dashboard/",
     success: function (response) {
 
-    if(response.total_revenue == null) { re_today = 0 }
-    else re_today =response.total_revenue
+      var dataRevenue  = response.map(function(item) {
+        return item.total;
+      });
+      var dataDay  = response.map(function(item) {
+        return item.day;
+      });
+      console.log(dataRevenue);
   // Area Chart Example
   var ctx = $("#myAreaChart");
   var myLineChart = new Chart(ctx, {
     type: 'line',
     data: {
-      labels: ["6 Day Ago", "5 Day Ago", "4 Day Ago", "3 Day Ago", "2 Day Ago", "1 Day Ago", "Today"],
+      labels: dataDay,
       datasets: [{
         label: "Earnings",
         lineTension: 0.3,
@@ -64,7 +69,7 @@ $(document).ready(function() {
         pointHoverBorderColor: "rgba(78, 115, 223, 1)",
         pointHitRadius: 10,
         pointBorderWidth: 2,
-        data: [0, 0, 120000, 150000, 10000, 89000, re_today],
+        data: dataRevenue,
       }],
     },
     options: {

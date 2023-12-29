@@ -96,6 +96,12 @@
            var address = $(this).closest('.order-item-detail').find('#address_user').val();
            console.log(address);
             var apiUrl = 'https://nominatim.openstreetmap.org/search?format=json&q=' + address;
+        //     navigator.geolocation.getCurrentPosition(function(position) {
+        //      var latitude_current = position.coords.latitude;
+        //     var longitudecurrent = position.coords.longitude;
+        //      console.log("Latitude: " + latitude);
+        //      console.log("Longitude: " + longitude);
+        // })
 
             $.ajax({
                 url: apiUrl,
@@ -105,7 +111,7 @@
                     if (data && data.length > 0) {
                         var lat = parseFloat(data[0].lat);
                         var lon = parseFloat(data[0].lon);
-                        let address  ='https://www.google.com/maps/dir/15.975298,108.252194/' + lat + ',' + lon + '/';
+                        let address  =`https://www.google.com/maps/dir/15.975298,108.252194/${lat},${lon}/`;
                         window.open(address, '_blank'); ;
                         console.log(address);
                     } else {

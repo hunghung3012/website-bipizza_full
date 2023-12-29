@@ -6,9 +6,9 @@
 @section('content') 
 <div class="list-product-container">
     <h2 class="mb-3">Danh Sách Người Dùng</h2>
-    <div>
+    {{-- <div>
         <a href="{{route('admin.user.add')}}" class="mb-3 btn btn-primary"><i class="fa-solid fa-circle-plus"></i> Thêm Người Dùng</a>
-    </div>
+    </div> --}}
     @if(session('msg'))
     <div class="alert alert-{{session('type')}}">{{session('msg')}}</div>
     @endif
