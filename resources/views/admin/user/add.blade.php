@@ -28,7 +28,7 @@
                 @enderror</td>
         </tr>
       <tr>
-        <td colspan="2"><button type="submit" class="btn btn-success float-right">Thêm Sản Phẩm</button></td>
+        <td colspan="2"><button type="submit" class="btn btn-success float-right">Thêm Người </button></td>
         
       </tr>
     </table>

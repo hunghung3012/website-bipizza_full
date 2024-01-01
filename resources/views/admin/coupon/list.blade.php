@@ -22,7 +22,7 @@
     @endif
     <table class=" table ">
         <tr> 
-            <th>STT</th>
+            <th>ID</th>
             <th>Mã Giảm</th>
             <th>Số Tiền</th>
             <th>Loại</th>
@@ -38,7 +38,7 @@
             
        
         <tr >
-            <td class="align-middle">{{$i++}}</td>
+            <td class="align-middle">{{$coupon->id}}</td>
             <td class="align-middle">{{$coupon->magiam}}</td>
             <td class="align-middle">{{$coupon->sotien }}</td>
             <td class="align-middle">{{$coupon->loai}}</td>

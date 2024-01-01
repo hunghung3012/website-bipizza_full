@@ -12,7 +12,7 @@
 <script src="https://kit.fontawesome.com/7a3de78148.js" crossorigin="anonymous"></script>
 
 <script src="js/index.js" defer></script>
-<script src="https://kit.fontawesome.com/7a3de78148.js" crossorigin="anonymous"></script>
+
 @endsection   
 <div class="loader"></div>
 <div class="all_container">

@@ -17,7 +17,7 @@
                 
                 <tr>
                     <td>Mã Giảm</td>
-                    <td><input class="form-control" name="name" type="text" value="{{old('name') ?? $coupon->magiam}}">
+                    <td><input class="form-control" name="name" type="text" value="{{old('name') ?? $coupon->magiam}}" readonly>
                         @error('name')
                         <div class="alert alert-danger">{{$message}}</div>
                         @enderror</td>

@@ -141,7 +141,8 @@ Route::get('/admin/logout', [LoginController::class, "logoutAdmin"])->name('logo
 
 // Delivery
 Route::get('/delivery/list', [OrderController::class, "pageListDeli"])->name('pageListDeli');
-Route::post('/delivery/list', [OrderController::class, "deliUpdateStatus"])->name('deliUpdateStatus');
+Route::post('/delivery/submit', [OrderController::class, "deliUpdateStatus"])->name('deliUpdateStatus');
+Route::post('/delivery/cancel', [OrderController::class, "deliCancelOrder"])->name('deliCancelOrder');
 Route::get('/getSubTotal', [OrderController::class, "getSubTotal"])->name('pageListDeli');
 
 // ChageQuality
@@ -157,5 +158,3 @@ Route::post('/gpt',[ChatAIController::class,"processQuesion"]);
 Route::post('/forget_pass',[LoginController::class,"forget_pass"])->name('forget_pass');
 Route::get('/regain_pass',[LoginController::class,"regain_pass"])->name('regain_pass');
 Route::post('/setNewPass',[LoginController::class,"setNewPass"])->name('setNewPass');
-
-Route::get('/test_revenue',[DashboardController::class,"data_chart_dashboard"])->name('regain_pass');

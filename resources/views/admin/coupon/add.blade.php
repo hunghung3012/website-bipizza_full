@@ -60,7 +60,7 @@
         @enderror</td>
 </tr>
       <tr>
-        <td colspan="7"><button type="submit" class="btn btn-success float-right">Thêm Sản Phẩm</button></td>
+        <td colspan="7"><button type="submit" class="btn btn-success float-right">Thêm Phiếu Giảm Giá</button></td>
         
       </tr>
     </table>

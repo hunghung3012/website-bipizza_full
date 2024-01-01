@@ -100,6 +100,10 @@ img {
     border-radius: 20px;
 
 }
+.button_approve {
+    display: flex;
+    gap: 10px;
+}
 .overlay {
 
     background-color: rgba(21, 21, 21, 0.195);

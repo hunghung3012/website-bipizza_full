@@ -29,6 +29,7 @@
         <div class="head"  ><p >Địa Chỉ :</p> <p class="fw-bold">{{$order->diachi}}</p></div>
         <div  class="head" ><p >Số Điện Thoại :</p> <p class="fw-bold">{{$order->user->phone}}</p></div>
         <div class="head"  ><p >Tổng Tiền :</p> <p class="fw-bold">{{number_format($order->tongtien) }} đ</p></div>
+        <div class="head"  ><p >Id đơn hàng :</p> <p class="fw-bold">{{$order->id}}</p></div>
         <input type="hidden" id="address_user" value="{{$order->diachi}}">
         
         <table class="table table-striped table-detail">
@@ -59,13 +60,19 @@
                 <i class="fa-solid fa-location-dot"></i>
             </button>
             <span class="x">Tìm Địa Chỉ</span>
-   
+   <div class="button_approve">
         <form action="{{route('deliUpdateStatus')}}" method="POST">
             @csrf
             <input type="hidden" name="id" value="{{$order->id}}">
         <button type="submit" class="btn btn-success btn-submit">Đã Giao Thành Công</button>
     </form>
+    <form action="{{route('deliCancelOrder')}}" method="POST">
+        @csrf
+        <input type="hidden" name="id" value="{{$order->id}}">
+    <button type="submit" class="btn btn-danger btn-submit">Không Thành Công</button>
+</form>
     </div>
+</div>
     </div>
     @endforeach
     <div class="annouce-container">
@@ -103,25 +110,38 @@
         //      console.log("Longitude: " + longitude);
         // })
 
-            $.ajax({
-                url: apiUrl,
-                method: 'GET',
-                dataType: 'json',
-                success: function(data) {
-                    if (data && data.length > 0) {
-                        var lat = parseFloat(data[0].lat);
-                        var lon = parseFloat(data[0].lon);
-                        let address  =`https://www.google.com/maps/dir/15.975298,108.252194/${lat},${lon}/`;
-                        window.open(address, '_blank'); ;
-                        console.log(address);
-                    } else {
-                        alert('Không tìm thấy địa chỉ này')
-                    }
-                },
-                error: function(error) {
-                    alert('Không tìm thấy địa chỉ này')
-                }
-            });
+            // $.ajax({
+            //     url: apiUrl,
+            //     method: 'GET',
+            //     dataType: 'json',
+            //     success: function(data) {
+            //         if (data && data.length > 0) {
+            //             var lat = parseFloat(data[0].lat);
+            //             var lon = parseFloat(data[0].lon);
+            //             let address  =`https://www.google.com/maps/dir/15.975298,108.252194/${lat},${lon}/`;
+            //             window.open(address, '_blank'); ;
+            //             console.log(address);
+            //         } else {
+            //             alert('Không tìm thấy địa chỉ này')
+            //         }
+            //     },
+            //     error: function(error) {
+            //         alert('Không tìm thấy địa chỉ này')
+            //     }
+            // });
+            fetch(apiUrl)
+            .then(response => response.json())
+            .then(data => {
+    if (data && data.length > 0) {
+      var { lat, lon } = data[0];
+      var address = `https://www.google.com/maps/dir/15.975298,108.252194/${lat},${lon}/`;
+      window.open(address, '_blank');
+      console.log(address);
+    } else {
+      alert('Không tìm thấy địa chỉ.');
+    }
+  })
+  .catch(error => console.error('Error:', error));
         });
     });
 </script>

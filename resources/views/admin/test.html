@@ -9,4 +9,28 @@
 <body>
     
 </body>
+<script>
+    var apiUrl = 'https://provinces.open-api.vn/api/';
+
+// Sử dụng Fetch API để gửi yêu cầu GET đến API
+fetch(apiUrl + 'province')
+  .then(response => {
+    // Kiểm tra xem response có thành công không (status code 200)
+    if (!response.ok) {
+      throw new Error(`Network response was not ok: ${response.status}`);
+    }
+    // Chuyển đổi response sang đối tượng JSON
+    return response.json();
+  })
+  .then(data => {
+    // Xử lý dữ liệu trả về, ví dụ: in ra tên các tỉnh thành
+    data.forEach(province => {
+      console.log(province.name);
+    });
+  })
+  .catch(error => {
+    // Xử lý lỗi nếu có
+    console.error('Error:', error);
+  });
+</script>
 </html>

@@ -21,30 +21,29 @@ $(document).ready(function () {
 
     // Kiểm tra mã giảm giá
     buttonCoupon.click(function (event) {
-      event.preventDefault();
+        event.preventDefault();
         const notice = $(".notice_text span");
         if (inputCoupon.val() == "") {
             showNotice(notice, "Vui Lòng Nhập Mã");
         } else {
-         
             var coupon = inputCoupon.val();
-            
+
             $.ajax({
                 type: "POST",
                 url: "http://127.0.0.1:8000/renderCart/checkCoupon",
                 data: {
                     coupon: coupon,
-                    _token: $('.coupon-input_button').find('input[name="_token"]').val()
+                    _token: $(".coupon-input_button")
+                        .find('input[name="_token"]')
+                        .val(),
                 },
                 success: function (response) {
-                   
-
                     if (!response.valid) {
                         showNotice(notice, response.msg);
                     } else {
                         voucher.text(response.money_coupon);
-                      
-                        totalItem.text(formatNumber(response.total) )
+
+                        totalItem.text(formatNumber(response.total));
 
                         coupon_input_hidden.val(response.coupon_temp);
                         id_input_hidden.val(response.magiam);
@@ -58,42 +57,23 @@ $(document).ready(function () {
         }
     });
 
-
-
     $(".number_input").change(function () {
-        var id_row = $(this).data("id-row");
-        var quantity = $(this).val();
-        var totalPriceElement = $(this).closest('.item').find('.total-price');
-        $.ajax({
-  
-            type: "POST",
-            url: "http://127.0.0.1:8000/renderCart/chageQuantity",
-            data: {
-                id_row: id_row,
-                quantity: quantity,
-                _token: $('input[name="_token"]').val(),
-            },
-            success: function (response) {
-                console.log(formatNumber(response.product.qty*response.product.price));
-                totalPriceElement.text(formatNumber(response.product.qty*response.product.price))
-                sub_total.text(response.total)
-                console.log(response);
-                if(inputCoupon.val() != "") {
-                  buttonCoupon.click();
-                }
-            },
-        });
+        changeQuantity.call(this);
     });
+
     inputCoupon.keydown(function (event) {
         if (event.key === "Enter") {
             checkCoupon();
         }
     });
     function formatNumber(number) {
-      var numberString = number.toString();
-      var formattedNumber = numberString.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-      return formattedNumber+"đ";
-  }
+        var numberString = number.toString();
+        var formattedNumber = numberString.replace(
+            /\B(?=(\d{3})+(?!\d))/g,
+            ","
+        );
+        return formattedNumber + "đ";
+    }
 
     function checkCoupon() {
         const notice = $(".notice_text span");
@@ -162,11 +142,11 @@ $(document).ready(function () {
     function hideCart() {
         cartContainer.removeClass("active");
         overlay.removeClass("active");
-        formDelivery.hide()
+        formDelivery.hide();
     }
 
-    overlay.click(hideCart);  
-  
+    overlay.click(hideCart);
+
     backCart_button.click(hideCart);
 
     const infor_icon = $(".infor_account .account");
@@ -176,5 +156,53 @@ $(document).ready(function () {
         option_account.toggleClass("active");
     });
 
-  
+    // Button thay đổi số lượng
+    const upButton = $(".quantity_button.up");
+    const downButton = $(".quantity_button.down");
+    upButton.click( function () {
+    
+    let old_quantity = $(this).closest('.quantity').find('.number_input'); 
+    let int_quantity = parseInt(old_quantity.val());
+    if(int_quantity<parseInt(old_quantity.attr("max"))) {
+        old_quantity.val(int_quantity+1);
+        changeQuantity.call(old_quantity);
+    }
+    
+    });
+    downButton.click(function () {
+        let old_quantity = $(this).closest('.quantity').find('.number_input'); 
+        let int_quantity = parseInt(old_quantity.val());
+        if(int_quantity>parseInt(old_quantity.attr("min"))) {
+            old_quantity.val(int_quantity-1);
+            changeQuantity.call(old_quantity);
+        }
+
+    });
+    function changeQuantity(event) {
+        var id_row = $(this).data("id-row");
+        var quantity = $(this).val();
+        var totalPriceElement = $(this).closest(".item").find(".total-price");
+        $.ajax({
+            type: "POST",
+            url: "http://127.0.0.1:8000/renderCart/chageQuantity",
+            data: {
+                id_row: id_row,
+                quantity: quantity,
+                _token: $('input[name="_token"]').val(),
+            },
+            success: function (response) {
+                console.log(
+                    formatNumber(response.product.qty * response.product.price)
+                );
+                totalPriceElement.text(
+                    formatNumber(response.product.qty * response.product.price)
+                );
+                sub_total.text(response.total);
+                console.log(response);
+                if (inputCoupon.val() != "") {
+                    buttonCoupon.click();
+                }
+            },
+        });
+    }
 });

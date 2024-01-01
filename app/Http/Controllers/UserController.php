@@ -65,7 +65,7 @@ class UserController extends Controller
 
         ];
         $id = $this->model->updateUserAdmin($data);
-        return redirect()->back()->with('msg', "Cập nhật thành công");
+        return redirect()->route('admin.user.list')->with(['msg'=>"Cập nhật thành công","type"=>"success"]);
     }
     public function deleteUserAdmin($id)
     {

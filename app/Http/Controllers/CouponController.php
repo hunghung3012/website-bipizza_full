@@ -99,7 +99,7 @@ class CouponController extends Controller
 
       ];
       $id = $this->model->updateCouponAdmin($data);
-      return redirect()->back()->with('msg',"Cập nhật thành công");
+      return redirect()->route('admin.coupon.list')->with(['msg'=>"Cập nhật thành công","type"=>"success"]);
     
       
       

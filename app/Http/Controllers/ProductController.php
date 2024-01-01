@@ -187,7 +187,7 @@ class ProductController extends Controller
         "iddanhmuc"=> $request->category
       ];
       $id = $this->model->updateProductAdmin($data);
-      return redirect()->back()->with('msg',"Cập nhật thành công");
+      return redirect()->route('admin.product.list')->with(['msg'=>"Cập nhật thành công","type"=>"success"]);
     
       
       

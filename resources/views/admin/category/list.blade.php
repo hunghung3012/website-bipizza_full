@@ -15,7 +15,8 @@
         <a href="{{route('admin.category.add')}}" class="mb-3 btn btn-primary"><i class="fa-solid fa-circle-plus"></i> Thêm Danh Mục</a>
     </div>
     @if(session('msg'))
-    <div class="alert alert-{{session('type')}}">{{session('msg')}}</div>
+    <div class="alert alert-{{session('type')}} ">{{session('msg')}}</div>
+
     @endif
     <table class=" table ">
         <tr> 

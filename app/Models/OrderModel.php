@@ -73,6 +73,7 @@ class OrderModel extends Model
     return DB::select("
     SELECT  DATE(ngaytao) AS day  , SUM(tongtien) AS total
     FROM hoadon 
+    WHERE trangthai='Đã Giao'
     GROUP BY day DESC
     ORDER BY day 
     LIMIT 7");

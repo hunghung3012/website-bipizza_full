@@ -83,12 +83,13 @@ class OrderController extends Controller
         $request->validate(
             [
                 'address' => 'required|max:400',
-                "phone" => 'required'
+                "phone" => 'required|digits:10'
             ],
             [
                 'address.required' => "Không được để trống địa chỉ",
                 'address.max' => "Không được ghi quá :min ký tự",
-                "phone.required" => 'Không được để trống số điện thoại'
+                "phone.required" => 'Không được để trống số điện thoại',
+                "phone.digits" => 'Số điện thoại không đúng'
 
             ]
         );
@@ -362,6 +363,27 @@ class OrderController extends Controller
             "trangthai" => "Đã Giao"
         ];
         $this->order->updateOrderAdmin($data);
+        return redirect()->back()->with('msg', "Cập Nhật Thành Công");
+    }
+    public function deliCancelOrder(Request $request)
+    {
+        $this->order->getOrderCondition($request->id);
+        $data = [
+            "id" => $request->id,
+            "trangthai" => "Đã Hủy",
+         
+        ];
+        $this->order->updateOrderAdmin($data);
+          // Sửa lại số lượng sản phẩm
+          $details = $this->detail_order->getOrderDetailCondition($request->id);
+          foreach($details as $detail) {
+              $data1 = [
+                  "id" =>$detail->idsanpham,
+                  "soluong" => $this->product->renderCondition($detail->idsanpham)->soluong+$detail->soluong,
+              ];
+              $this->product->updateProductAdmin( $data1 );
+          }
+          // 
         return redirect()->back()->with('msg', "Cập Nhật Thành Công");
     }
     public function getSubTotal()

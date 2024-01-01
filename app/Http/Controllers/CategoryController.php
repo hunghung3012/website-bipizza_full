@@ -67,7 +67,7 @@ private $model;
 
       ];
       $id = $this->model->updateCategoryAdmin($data);
-      return redirect()->back()->with('msg',"Cập nhật thành công");
+      return redirect()->route('admin.category.list')->with(['msg'=>"Cập nhật thành công","type"=>"success"]);
     
       
       

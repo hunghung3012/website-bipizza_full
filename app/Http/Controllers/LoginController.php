@@ -60,6 +60,7 @@ class LoginController extends Controller
                 "name_su.required" => "Không Được Nhập Thiếu Tên",
                 "address_su.required" => "Không Được Nhập Thiếu Trường Địa Chỉ",
                 "phone_su.required" => "Không Được Nhập Thiếu Số Điện Thoại",
+                "phone_su.digits" => "Không đúng số điện thoại",
 
             ]
             );
@@ -125,7 +126,7 @@ class LoginController extends Controller
     public function regain_pass(Request $request) {
         $email = $request->email;
         $check = ($request->key ==session()->get('key_email'))?true:false;
-            return view('public.regain_pass',compact('check','email'));
+        return view('public.regain_pass',compact('check','email'));
         
     }
     public function setNewPass(Request $request) {
