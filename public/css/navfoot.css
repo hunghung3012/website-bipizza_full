@@ -97,11 +97,12 @@ object-fit: cover;
 /* menu */
 #header {
     width: 100%;
-    height: 120px;
-    opacity: 1;
+    height: 100px;
+    /* opacity: 1; */
     display: flex;
     position: fixed;
     z-index: 999;
+    background-color: rgba(0, 0, 0, 0.07);
 }
 .icon_logo {
     font-size: 30px;
@@ -821,15 +822,48 @@ display: flex;
     background-color: rgba(46, 45, 45, 0.978); /* Màu nền với độ mờ */
    position: relative;
 }
+.loading_container {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 3px;
+
+}
+.loading_container .dot {
+    font-size: 40px;
+    animation: loading 0.6s infinite alternate;
+    color: rgb(200, 195, 195);
+}
+@keyframes loading {
+    0% {
+        transform: translateY(-10px);
+    }
+    100% {
+        transform: translateY(0px);
+    }
+}
+.loading_container .dot:nth-child(2) {
+    animation-delay: 0.1s;
+}
+.loading_container .dot:nth-child(3) {
+    animation-delay: 0.2s;
+}
 .text_chat {
-    height: 40px;
+    height: 35px;
     gap: 20px;
     display: flex;
     padding:  0px 10px 0px 10px;
+    position: relative;
+
+
 }
 .text_chat_item {
     width: 90%;
     height: 100%;
+    position: relative;
+
 }
 .text_chat_item input {
     width: 100%;
@@ -838,6 +872,7 @@ display: flex;
     background-color: rgb(51, 53, 54);;
     color:  rgb(233, 236, 237);
     font-size: 15px;
+  
 }
 .icon_send i {
     color: rgb(196, 194, 194);
@@ -971,4 +1006,10 @@ display: flex;
 .login_button:hover {
     transform: scale(1.1);
     color: rgb(241, 236, 236);
+}
+#click_to_convert {
+    position: absolute;
+    top: 8px;
+    right: 85px;
+    z-index: 1;
 }

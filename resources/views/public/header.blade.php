@@ -22,17 +22,17 @@
     </a>
 
     <ul class="main_menu">
-      <li class="menu_item item-home">
-        <a href="{{ route('renderHome') }}" >Home</a>
+      <li class="menu_item item-home ">
+        <a data-menu-item="item1"  href="{{ route('renderHome') }}" >Home</a>
       </li>
       <li class="menu_item  item-menu">
-        <a href="{{ route('renderMenu') }}">Menu</a>
+        <a data-menu-item="item2"  href="{{ route('renderMenu') }}">Menu</a>
       </li>
       <li class="menu_item">
-        <a href="{{ route('blog') }}">Blog</a>
+        <a data-menu-item="item3"  href="{{ route('blog') }}">Blog</a>
       </li>
       <li class="menu_item"><a href="#">Store</a></li>
-      <li class="menu_item"><a href="{{ route('aboutus') }}">About us</a></li>
+      <li class="menu_item"><a data-menu-item="item4"  href="{{ route('aboutus') }}">About us</a></li>
     </ul>
     <div class="infor_account logo_cart">
       @if(Auth::check()) 

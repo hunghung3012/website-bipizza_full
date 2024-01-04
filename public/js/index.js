@@ -83,4 +83,6 @@ $(document).ready(function() {
     prev_sl2.click(prevSlider);
 
     const autoNext = setInterval(nextSlider, 3000);
+
+    
 });

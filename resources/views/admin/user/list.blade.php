@@ -3,9 +3,14 @@
 @section('css')
 <link rel="stylesheet" href="/admin-2/css/product.css">
 @endsection
+
 @section('content') 
 <div class="list-product-container">
     <h2 class="mb-3">Danh Sách Người Dùng</h2>
+    <div class="findx mb-3">
+        <input class="form-control" type="text" placeholder="Nhập Tìm Kiếm">
+      
+    </div>
     {{-- <div>
         <a href="{{route('admin.user.add')}}" class="mb-3 btn btn-primary"><i class="fa-solid fa-circle-plus"></i> Thêm Người Dùng</a>
     </div> --}}
@@ -24,6 +29,7 @@
             <th>Sửa</th>
             <th>Xóa</th>
         </tr>
+        <tbody class="body">
         @foreach($users as $index=>$user)
             
        
@@ -45,7 +51,9 @@
         </tr>
        
         @endforeach
+      </tbody>
     </table>
 </div>
+<script src="/admin-2/js/find.js"></script>
 @endsection
 

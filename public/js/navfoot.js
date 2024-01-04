@@ -147,4 +147,16 @@ $(document).ready(function() {
     infor_icon.click(function() {
         option_account.toggleClass('active');
     });
+    // Item menu
+    var activeItem = localStorage.getItem('active_item');
+    if(activeItem != "") {
+        $('.main_menu .menu_item a .active').removeClass('active');
+        $('.main_menu .menu_item a[data-menu-item="'+activeItem+'"]').addClass('active');
+    }else {
+        $('.main_menu .menu_item a[data-menu-item="item1"]').addClass('active');
+    }
+    $('.main_menu .menu_item a').click(function(e) {    
+        localStorage.setItem('active_item', $(this).data('menu-item'));        
+        $(this).addClass('active');
+    })
 });

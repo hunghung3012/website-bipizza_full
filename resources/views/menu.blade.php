@@ -1,9 +1,9 @@
 @extends('layouts.layout1') 
 @section('title', "Menu")  
 @section('css')
-<link rel="stylesheet" href="css/menu.css" />
-<link rel="stylesheet" href="css/navfoot.css" />
-<link rel="stylesheet" href="css/grid.css" />
+<link rel="stylesheet" href="/css/menu.css" />
+<link rel="stylesheet" href="/css/navfoot.css" />
+<link rel="stylesheet" href="/css/grid.css" />
 @section('js')
 <script src="https://kit.fontawesome.com/7a3de78148.js" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -67,9 +67,9 @@
           <p class="price_condition_text">Khoảng Giá</p>
           <div class="price_condition">
           
-            <input type="text" class="price_from" placeholder="₫ TỪ">
+            <input type="number" class="price_from" placeholder="₫ TỪ">
             <span>-</span>
-            <input type="text" class="price_to" placeholder="₫ ĐẾN">
+            <input type="number" class="price_to" placeholder="₫ ĐẾN" >
           </div>
           <div class="price_condition_submit"><button>Xác Nhận</button></div>
         </div>
@@ -118,6 +118,10 @@
                 </a> 
                 @endforeach
                 {{--  --}}
+              </div>
+              <div class="pagination">
+                <a href="{{ route('renderMenu', ['page' => 1]) }}">1</a>
+                <a href="{{ route('renderMenu', ['page' => 2]) }}">2</a>
               </div>
         </div>
 

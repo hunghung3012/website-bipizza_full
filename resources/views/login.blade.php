@@ -26,7 +26,7 @@
     @error('email_su')
         <div class="alert alert-danger">{{ $message }}</div>
     @enderror
-    <input class="email_input_signup" name="email_su" type="text" placeholder="Email" value="{{old('email_su')}}">
+    <input class="email_input_signup" name="email_su" type="text" placeholder="Email" value="{{old('email_su')}}" autocomplete="on">
 
     <!-- Hiển thị thông báo lỗi cho trường 'password_su' -->
     @error('password_su')
@@ -54,8 +54,8 @@
             <form class="form" action="{{ route('checkUserLogin') }}" method="POST">
                 @csrf
                 <h1>Đăng Nhập</h1>
-                <input name="email" class="email_input" type="text" placeholder="Email"
-                    value="{{ old('email') ?? session('user') ?? session('email')  }}">
+                <input name="email" class="email_input" type="email" placeholder="Email" autocomplete="on"
+                    value="{{ old('email') ?? session('user') ?? session('email')  }} ">
                 @error('email')
                     <div class="alert alert-danger">{{ $message }}</div>
                 @enderror

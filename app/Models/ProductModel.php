@@ -41,6 +41,7 @@ class ProductModel extends Model
         ->select('sanpham.*','tendanhmuc')
         ->get();
     }
+    
     function renderMenuFilter($id,$price,$name,$quantity) {
         return DB::table($this->table)
         ->whereIn('iddanhmuc',$id)
@@ -57,6 +58,13 @@ class ProductModel extends Model
         ->select('sanpham.*', 'danhmuc.tendanhmuc')
         ->first();
         return  $result;
+    }
+    function renderMenuPage($start) {
+        return DB::select("
+        SELECT sanpham.*,tendanhmuc FROM sanpham,danhmuc
+        WHERE sanpham.iddanhmuc = danhmuc.id
+        LIMIT $start,12
+        ");
     }
     // admin
     function renderListProductAdmin($oderby,$condition) {

@@ -54,7 +54,8 @@ Route::get('/destroyCart', function () {
 
 
 Route::get('/detail_product/{id}', [ProductController::class, "detailProduct"])->name('detail_product');
-Route::get('/renderMenu', [ProductController::class, "renderMenu"])->name('renderMenu');
+// Route::get('/renderMenu', [ProductController::class, "renderMenu"])->name('renderMenu');
+Route::get('/renderMenu/{page?}', [ProductController::class, "renderMenu"])->name('renderMenu');
 Route::get('/renderHome', [ProductController::class, "renderHome"])->name('renderHome');
 Route::post('/addCart', [ProductController::class, "addCart"])->name('addCart')->middleware('checkLoginUser');
 Route::get('/renderCart', [ProductController::class, "renderCart"])->name('renderCart')->middleware('checkLoginUser');

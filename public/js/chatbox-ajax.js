@@ -4,6 +4,8 @@ $(document).ready(function () {
     const chat_box = $(".content_chat");
     const chat_box_back = $(".chat_box_back");
     const question_input = $('.question_text')
+    const loading = $('.loading_container')
+    loading.hide();
     icon_chat_box.click(function() {
         chat_box_container.addClass('active');
         icon_chat_box.hide();
@@ -51,7 +53,7 @@ if(question_input.val()!="") {
         `;
         chat_box.append(child_client);
         const token = $('.text_chat_item input[name="_token"]');
-
+        loading.show()
         $.ajax({
             type: "POST",
             url: "http://127.0.0.1:8000/gpt",
@@ -60,7 +62,7 @@ if(question_input.val()!="") {
                 _token:  token.val()
 ,
         },
-            
+        
             success: function (response) {
                 
                 console.log(response);
@@ -77,8 +79,15 @@ if(question_input.val()!="") {
                 `;
                 chat_box.append(child_bot);
                 question_input.focus();
+                loading.hide()
                 scrollToBottom();
+            },
+            error: function(xhr, status, error) {
+                alert("Hiện tại IPA đang bị lỗi");
+                loading.hide()
+
             }
+
         });
 
         
@@ -153,5 +162,9 @@ hide_convert.click(function() {
 //         recognition.start();
 //     }
 // });
+
+
+
+
 
 });

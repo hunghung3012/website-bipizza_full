@@ -11,6 +11,7 @@
     <title>@yield('title')</title>
     @yield('css')
     @yield('js')
+   
 
 </head>
 
@@ -50,7 +51,13 @@
             </div>
           </div>
             {{-- Content --}}
+          {{-- wait --}}
+          <div class="loading_container">
+            <div class="dot">.</div>
+            <div class="dot">.</div>
+            <div class="dot">.</div>
 
+          </div>
         </div>
         <div class="text_chat">
          
@@ -75,3 +82,6 @@
 
  
     @include('public.footer')
+    <script>
+      
+    </script>

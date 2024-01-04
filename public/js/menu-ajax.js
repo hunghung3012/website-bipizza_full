@@ -14,6 +14,7 @@ $(document).ready(function(){
             filter();
       });
     function filter() {
+        
         var selectedValues = $(".category:checked").map(function(){
             return $(this).val();
           }).get();
@@ -28,6 +29,9 @@ $(document).ready(function(){
           } else {
               var price = {"from": price_from};
           }
+          if(selectedValues.length == 0 && price_from=="" && price_to=="" && findInput=="") {
+            $('.pagination').show();
+          }else  $('.pagination').hide();
           $.ajax({
             type: "POST",
              url: "http://127.0.0.1:8000/api/menu/",

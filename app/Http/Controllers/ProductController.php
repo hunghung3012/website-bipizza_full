@@ -40,9 +40,10 @@ class ProductController extends Controller
     }
     return view('index', compact('rand_data'));
   }
-  public function renderMenu()
+  public function renderMenu($page=1)
   {
-    $data = $this->model->renderMenu();
+    $start= ($page-1)*11;
+    $data = $this->model->renderMenuPage($start);
     $categorys = $this->category->getCategory();
 
     return view('menu', compact('data','categorys'));
